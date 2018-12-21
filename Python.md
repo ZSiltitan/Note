@@ -1,6 +1,21 @@
 # Python
 ## Pandas
 1. Insert Rows
+```
+```
+2. pd.ExcelWriter(file,engine = 'xlsxwriter')
+```
+>>>writer = pd.ExcelWriter(FiletoWrite,engine = 'xlsxwriter')
+>>>data = pd.read_excel('sample.xlsx')
+>>>data.to_excel(writer, sheet_name = 'sheet1', index = False/True)
+```
+*Until here, if there already a  'writer' excel file, then the to_excel will write sheet into the excel document.*
+**Notice: If not have the 'writer' file, then the excel document will not be created.
+Until**
+```
+>>>writer.save()
+```
+Then the excel is created with the imported sheets.
 
 ## gspread
 1. import_csv(sheet.id, data)
