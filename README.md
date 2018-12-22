@@ -1,6 +1,7 @@
 # Note 
 ## Github Markdown
 1. Remember to add a blank line before adding the table
+
 **Without blank line:**
 |Class|Range(DEC.)(BIN.)|Max Hosts|Rules|
 |----|----|----|----|
