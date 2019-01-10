@@ -38,3 +38,6 @@ ON TIMETAB.index = DURATAB.index
 Report Error: Detected implicit cartesian product for LEFT OUTER join between logical plans
 
 It's join's problem (maybe has duplicates)
+
+
+Solve: this happens when writing a formula can solve thing instead you wrote another source table and that could cause error
