@@ -1,5 +1,8 @@
-# Python
-## Pandas
+
+SyntaxEditor Code Snippet
+
+# Python 
+### Pandas     
 1. Insert Rows
 ```
 ```
@@ -17,16 +20,20 @@ Until**
 ```
 Then the excel is created with the imported sheets.
 
-## gspread
+3. read_csv('xxx.csv', **index_column** = 0)
+
+Could get rid of the 'Unnamed: 0' when read csv     
+
+4. to_csv('xxx.csv', **index = False**)
+Generate csv file without the index column 'Unnamed: 0'
+
+### gspread     
 1. import_csv(sheet.id, data)
 ```
 data = open('data.csv').read()
-# Get sheet_id from the link of your google sheet
-# https://docs.google.com/spreadsheets/d/1H5orsHF1k8IVqWDxAHv6xQwZlxIwlXpBJOvDgBUBeL0/edit#gid=1808900108
-# String between 'd/' and '/edit' is your sheet.id
-gc.import_csv('1H5orsHF1k8IVqWDxAHv6xQwZlxIwlXpBJOvDgBUBeL0',wk)
+# Get sheet_id from the link of your google sheet # https://docs.google.com/spreadsheets/d/1H5orsHF1k8IVqWDxAHv6xQwZlxIwlXpBJOvDgBUBeL0/edit#gid=1808900108 # String between 'd/' and '/edit' is your sheet.id  gc.import_csv('1H5orsHF1k8IVqWDxAHv6xQwZlxIwlXpBJOvDgBUBeL0',wk)
 ```
-## datetime
+### datetime  
 1. datetime.datetime.strptime(date,'%Y-%m-%d')
 Turn string into datetime.datetime
 *%Y-%m-%d   %H:%M:%S*
@@ -35,7 +42,7 @@ Turn string into datetime.datetime
 >>> holiday
 datetime.datetime(2018, 8, 31, 0, 0)
 ```
-2.  datetime.datetime.strftime('%Y-%m-%d')
+2. datetime.datetime.strftime('%Y-%m-%d')
 ```
 >>>holiday = datetime.datetime.strptime('2018-01-01','%Y-%m-%d')
 >>>holiday.strftime('%Y-%m-%d')
@@ -47,4 +54,26 @@ datetime.datetime(2018, 8, 31, 0, 0)
 datetime.timedelta(1)
 ```
 Use timedelta to modify the datetime.datetime attribute
-4. 
+4. locals()    
+```
+>>>for i in range(7,13,1):
+	   locals()['df2017_'+str(i)] = pd.read_csv('2017combine' + str(i) +'.csv')
+	   print ('2017combine' + str(i) +'.csv')
+2017combine7.csv
+2017combine8.csv
+2017combine9.csv
+2017combine10.csv
+2017combine11.csv
+2017combine12.csv
+```
+动态生成变量
+5. eval()    
+执行字符串表达式
+```
+def add_column(df,month):
+    df['Month']=month
+for i in range(7,13,1):
+    add_column(eval('df2017_'+str(i)),i)    
+```
+using eval() can call the **df2017_x** variable and achieve the add_column function
+使用eval()功能可以执行字符串中的表达式，可以动态调用变量
