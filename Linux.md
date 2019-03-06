@@ -74,3 +74,34 @@ MAC: 0D
     $ dos2unix filename 
     直接转换成unix格式，就OK了！～  
 	
+
+7. Mission fail and restart
+
+#!/bin/bash
+module_name="hive_to_hdfs"
+function run_workflow {
+    echo $(date +%FT%T)" [${module_name}] - Start"
+    status="fail"
+    local wait_duration=60
+    local max_wait=60
+    local attempt=0
+    while [[ ${status} == "fail" && ${attempt} < 1 ]]; do
+        echo $(date +%FT%T)" [${module_name}] - Starting Attempt #"${attempt}
+        echo $(date +%FT%T)" [${module_name}] - args: $@"
+
+
+        main $@
+
+        if [ $? -ne 0 ]; then
+            exit 1
+        else
+            status="success"
+        fi
+    done
+    if [ ${status} == "fail" ]; then
+        echo $(date +%FT%T)" [${module_name}] - Failed"
+        exit 1
+    fi
+}
+
+run_workflow $@
